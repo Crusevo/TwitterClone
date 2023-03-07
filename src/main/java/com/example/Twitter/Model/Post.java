@@ -1,22 +1,27 @@
 package com.example.Twitter.Model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import org.springframework.lang.NonNull;
 
 @Entity
 @Data
+@NoArgsConstructor
 public class Post {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long postId;
 
-    private String Title;
+    @NonNull
+    private String title;
 
+    @NonNull
     private String postContent;
+
+    @ManyToOne
+    private User postToUser;
 
 
 
