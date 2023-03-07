@@ -29,14 +29,28 @@ public class UserService {
 
     public User getUserById(long id) {
 
-        return userRepository.findById(id)
-                .orElseThrow();
+        return userRepository.findById(id).orElseThrow();
 
     }
 
     public User addUser(User user) {
 
-        return userRepository.save(user);
+        List<User> userNameFromDatabase = userRepository.findByUserName(user.getUserName());
+        List<User> userLastNameFromDatabase = userRepository.findByLastName(user.getLastName());
+
+
+        if(userNameFromDatabase.isEmpty() || userLastNameFromDatabase.isEmpty()){
+
+            userRepository.save(user);
+
+
+        } else {
+
+            System.out.println("Uźytkownik jest już w bazie danych");
+
+        }
+
+        return user;
 
     }
 
