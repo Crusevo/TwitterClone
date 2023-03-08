@@ -5,6 +5,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
 
+import java.util.List;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -20,8 +22,12 @@ public class Post {
     @NonNull
     private String postContent;
 
+    private int likes =0;
+
     @ManyToOne
     private User postToUser;
+
+
 
 
 

@@ -16,6 +16,8 @@ public class PostService {
 
     @Autowired PostRepository postRepository;
 
+    @Autowired UserRepository userRepository;
+
 
 
     public List<Post> getAllPosts(){
@@ -34,7 +36,27 @@ public class PostService {
     }
 
 
+    public List<Post> getPostsByUserName(long userId) {
+
+        User userFromDatabase = userRepository.findById(userId).orElseThrow();
+
+        return userFromDatabase.getUserPosts();
 
 
+    }
 
+    public Post giveLike(long postId) {
+
+       Post postFromDatabase = postRepository.findById(postId).orElseThrow();
+
+       int likes = postFromDatabase.getLikes();
+
+       int giveLike = likes + 1;
+
+       postFromDatabase.setLikes(giveLike);
+
+       return postRepository.save(postFromDatabase);
+
+
+    }
 }

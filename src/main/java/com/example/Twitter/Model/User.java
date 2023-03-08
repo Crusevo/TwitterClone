@@ -1,9 +1,11 @@
 package com.example.Twitter.Model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.lang.NonNull;
+import org.springframework.lang.NonNullApi;
 
 import java.util.List;
 

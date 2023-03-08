@@ -64,7 +64,9 @@ public class UserService {
 
        userFromDataBasePosts.add(post);
 
-       return userRepository.save(userFromDataBase);
+       userRepository.save(userFromDataBase);
+
+       return userFromDataBase;
 
 
     }

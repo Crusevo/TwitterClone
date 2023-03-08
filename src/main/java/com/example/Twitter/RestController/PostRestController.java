@@ -24,10 +24,19 @@ public class PostRestController {
 
     }
 
-    @PostMapping("/posts/")
-    public Post addPost (@RequestBody Post post){
+    @GetMapping("/posts/{userId}")
+    public List<Post> getPostsByUserName(@PathVariable ("userId") long userId){
 
-        return postService.addPost(post);
+
+        return postService.getPostsByUserName(userId);
+
+    }
+
+    @PutMapping("/posts/givelike/{postId}")
+    public Post giveLike(@PathVariable ("postId") long postId){
+
+
+        return postService.giveLike(postId);
 
     }
 
