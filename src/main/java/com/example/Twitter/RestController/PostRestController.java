@@ -1,5 +1,6 @@
 package com.example.Twitter.RestController;
 
+import com.example.Twitter.Model.Comment;
 import com.example.Twitter.Model.Post;
 import com.example.Twitter.Model.User;
 import com.example.Twitter.Service.PostService;
@@ -37,6 +38,14 @@ public class PostRestController {
 
 
         return postService.giveLike(postId);
+
+    }
+
+    @PutMapping("/posts/givecomment/{userId}/{postId}")
+    public Comment giveComment(@RequestBody Comment comment, @PathVariable ("userId") long userId, @PathVariable ("postId") long postId){
+
+
+        return postService.giveComment(comment,userId,postId);
 
     }
 

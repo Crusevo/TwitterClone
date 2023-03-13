@@ -10,25 +10,20 @@ import java.util.List;
 @Entity
 @Data
 @NoArgsConstructor
-public class Post {
+public class Comment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long postId;
+    private long commentId;
 
     @NonNull
-    private String title;
+    private String commentContent;
 
-    @NonNull
-    private String postContent;
-
-    private int likes =0;
+    @ManyToOne
+    private Post post;
 
     @ManyToOne
     private User user;
-
-    @OneToMany(cascade = CascadeType.ALL)
-    private List<Comment> comments;
 
 
 

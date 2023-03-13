@@ -1,7 +1,9 @@
 package com.example.Twitter.Service;
 
+import com.example.Twitter.Model.Comment;
 import com.example.Twitter.Model.Post;
 import com.example.Twitter.Model.User;
+import com.example.Twitter.Repository.CommentRepository;
 import com.example.Twitter.Repository.PostRepository;
 import com.example.Twitter.Repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ public class PostService {
     @Autowired PostRepository postRepository;
 
     @Autowired UserRepository userRepository;
+
+    @Autowired CommentRepository commentRepository;
 
 
 
@@ -40,7 +44,7 @@ public class PostService {
 
         User userFromDatabase = userRepository.findById(userId).orElseThrow();
 
-        return userFromDatabase.getUserPosts();
+        return userFromDatabase.getPosts();
 
 
     }
@@ -58,5 +62,27 @@ public class PostService {
        return postRepository.save(postFromDatabase);
 
 
+    }
+
+    public Comment giveComment(Comment comment, long userId, long postId) {
+
+        User userFromDatabase = userRepository.findById(userId).orElseThrow();
+        Post postFromDatabase = postRepository.findById(postId).orElseThrow();
+
+        List<Comment> userFromDatabaseComments = userFromDatabase.getComments();
+        List<Comment> postFromDatabaseComments = postFromDatabase.getComments();
+
+//        comment.setUser(userFromDatabase);
+//        comment.setPost(postFromDatabase);
+
+        commentRepository.save(comment);
+
+        userFromDatabaseComments.add(comment);
+        postFromDatabaseComments.add(comment);
+
+        userRepository.save(userFromDatabase);
+        postRepository.save(postFromDatabase);
+
+        return comment;
     }
 }

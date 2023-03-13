@@ -28,7 +28,10 @@ public class User {
     private String password;
 
     @OneToMany(cascade = CascadeType.ALL)
-    private List<Post> userPosts;
+    private List<Post> posts;
+
+    @OneToMany(cascade = CascadeType.ALL)
+    private List<Comment> comments;
 
 
 

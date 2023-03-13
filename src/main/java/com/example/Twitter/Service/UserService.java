@@ -58,7 +58,7 @@ public class UserService {
 
        User userFromDataBase = userRepository.findById(id).orElseThrow();
 
-       List<Post> userFromDataBasePosts = userFromDataBase.getUserPosts();
+       List<Post> userFromDataBasePosts = userFromDataBase.getPosts();
 
        postRepository.save(post);
 
