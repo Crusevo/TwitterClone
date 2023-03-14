@@ -1,14 +1,16 @@
 package com.example.Twitter.Model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.lang.NonNull;
 
 import java.util.List;
 
 @Entity
 @Data
+@RequiredArgsConstructor
+@AllArgsConstructor
+@ToString
 @NoArgsConstructor
 public class Post {
 
@@ -25,6 +27,7 @@ public class Post {
     private int likes =0;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
     private User user;
 
     @OneToMany(cascade = CascadeType.ALL)
